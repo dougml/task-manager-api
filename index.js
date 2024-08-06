@@ -31,6 +31,22 @@ app.post("/tasks", async (req, res) => {
     }
 });
 
+app.delete("/tasks/:id", async (req, res) => {
+    try {
+        const idTask = req.params.id;
+        console.log(idTask);
+        const deletedTask = await TaskModel.findByIdAndDelete(idTask);
+
+        if (!deletedTask) {
+            res.status(404).send(`Task not Found`);
+        } else {
+            res.status(200).send(deletedTask);
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running in port: ${PORT}`);
 });
