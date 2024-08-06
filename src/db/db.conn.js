@@ -15,14 +15,9 @@ const connectToDatabase = async () => {
         });
 
         console.log("You successfully connected to MongoDB with Mongoose!");
-
-
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
-    } finally {
-        // Fecha a conexão com o banco de dados
-        await mongoose.connection.close();
-    }
+    } 
 };
 
 // connectToDatabase().catch(console.error);
