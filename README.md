@@ -11,8 +11,8 @@ Esta é uma API simples de gerenciamento de tarefas construída com Node.js, Exp
 
 1. Clone o repositório:
     ```sh
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    cd seu-repositorio
+    git clone https://github.com/dougml/task-manager-api
+    cd task-manager-api
     ```
 
 2. Instale as dependências:
@@ -99,10 +99,18 @@ Esta é uma API simples de gerenciamento de tarefas construída com Node.js, Exp
 
 ```plaintext
 .
-├── models
-│   └── Task.js
-├── routes
-│   └── tasks.js
+├── src
+|    ├── controllers
+|    │   └── tasks.controllers.js
+|    ├── db
+|    │   └── conn.db.js
+|    ├── errors
+|    │   └── general.errors.js
+|    │   └── mongodb.errors.js
+|    ├── models
+|    │   └── Task.model.js
+|    ├── routes
+|    │   └── tasks.routes.js
 ├── .env
 ├── app.js
 ├── package.json
