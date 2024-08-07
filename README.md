@@ -38,7 +38,7 @@ Esta é uma API simples de gerenciamento de tarefas construída com Node.js, Exp
 
 ### Obter todas as tarefas
 
-- **URL**: `/`
+- **URL**: `/tasks`
 - **Método**: `GET`
 - **Resposta de Sucesso**:
   - **Código**: `200 OK`
@@ -46,7 +46,7 @@ Esta é uma API simples de gerenciamento de tarefas construída com Node.js, Exp
 
 ### Obter uma tarefa por ID
 
-- **URL**: `/:id`
+- **URL**: `/tasks/:id`
 - **Método**: `GET`
 - **Parâmetros de URL**: `id` - ID da tarefa
 - **Resposta de Sucesso**:
@@ -59,7 +59,7 @@ Esta é uma API simples de gerenciamento de tarefas construída com Node.js, Exp
 
 ### Criar uma nova tarefa
 
-- **URL**: `/`
+- **URL**: `/tasks/`
 - **Método**: `POST`
 - **Corpo da Requisição**: JSON com os dados da tarefa
 - **Resposta de Sucesso**:
@@ -68,7 +68,7 @@ Esta é uma API simples de gerenciamento de tarefas construída com Node.js, Exp
 
 ### Atualizar uma tarefa (campo `isCompleted`)
 
-- **URL**: `/:id`
+- **URL**: `/tasks/:id`
 - **Método**: `PATCH`
 - **Parâmetros de URL**: `id` - ID da tarefa
 - **Corpo da Requisição**: JSON com o campo `isCompleted`
@@ -84,7 +84,7 @@ Esta é uma API simples de gerenciamento de tarefas construída com Node.js, Exp
 
 ### Deletar uma tarefa
 
-- **URL**: `/:id`
+- **URL**: `/tasks/:id`
 - **Método**: `DELETE`
 - **Parâmetros de URL**: `id` - ID da tarefa
 - **Resposta de Sucesso**:
