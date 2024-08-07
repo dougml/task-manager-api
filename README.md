@@ -29,7 +29,7 @@ Esta é uma API simples de gerenciamento de tarefas construída com Node.js, Exp
 
 1. Inicie o servidor:
     ```sh
-    npm start
+    npm start:dev
     ```
 
 2. Acesse a API em `http://localhost:3000`.
@@ -99,10 +99,18 @@ Esta é uma API simples de gerenciamento de tarefas construída com Node.js, Exp
 
 ```plaintext
 .
-├── models
-│   └── Task.js
-├── routes
-│   └── tasks.js
+├── src
+|    ├── controllers
+|    │   └── tasks.controllers.js
+|    ├── db
+|    │   └── conn.db.js
+|    ├── errors
+|    │   └── general.errors.js
+|    │   └── mongodb.errors.js
+|    ├── models
+|    │   └── Task.model.js
+|    ├── routes
+|    │   └── tasks.routes.js
 ├── .env
 ├── app.js
 ├── package.json
