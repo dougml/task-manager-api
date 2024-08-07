@@ -1,94 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-// const { default: mongoose } = require("mongoose");
+const TaskController = require("../controllers/task.controller");
 
-const TaskModel = require('../models/task.model')
+router.get("/", TaskController.getAllTasks);
+router.get("/:id", TaskController.getTaskById);
+router.post("/", TaskController.createTask);
+router.patch("/:id", TaskController.updateTask);
+router.delete("/:id", TaskController.deleteTask);
 
-router.get("/", async (req, res) => {
-    try {
-        const taskLisk = await TaskModel.find({});
-
-        res.status(200).send(taskLisk);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-});
-
-router.get("/:id", async (req, res) => {
-    try {
-        const taskId = req.params.id;
-        const task = await TaskModel.findById(taskId);
-
-        if (!task) {
-            res.status(404).send("Task not found");
-        } else {
-            res.status(200).send(task);
-        }
-    } catch (error) {
-        res.status(500).send("Internal server error");
-    }
-});
-
-router.post("/", async (req, res) => {
-    try {
-        const newTask = new TaskModel(req.body);
-
-        await newTask.save();
-        res.status(201).send(newTask);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-});
-
-router.patch("/:id", async (req, res) => {
-    try {
-        const taskId = req.params.id;
-        const { description, isCompleted } = req.body;
-
-        // Verifica se a tentativa de atualizar o campo "description" foi feita
-        if (description) {
-            return res
-                .status(400)
-                .send("Is not possible to update task description");
-        }
-
-        // Verifica se o campo "isCompleted" foi passado no corpo da requisição
-        if (typeof isCompleted !== "boolean") {
-            return res.status(400).send("Invalid value for isCompleted");
-        }
-
-        // Atualiza apenas o campo "isCompleted" no banco de dados
-        const updatedTask = await TaskModel.findByIdAndUpdate(
-            taskId,
-            { isCompleted },
-            { new: true, runValidators: true }
-        );
-
-        if (!updatedTask) {
-            return res.status(404).send("Task not found");
-        }
-
-        res.status(200).send(updatedTask);
-    } catch (error) {
-        res.status(500).send("Internal server error");
-    }
-});
-
-router.delete("/:id", async (req, res) => {
-    try {
-        const idTask = req.params.id;
-
-        const deletedTask = await TaskModel.findByIdAndDelete(idTask);
-
-        if (!deletedTask) {
-            res.status(404).send(`Task not Found`);
-        } else {
-            res.status(200).send(deletedTask);
-        }
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-});
-
-module.exports = router
+module.exports = router;
