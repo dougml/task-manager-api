@@ -1,4 +1,5 @@
 const TaskModel = require("../models/task.model");
+const { notFoundError } = require("../errors/mongodb.errors");
 
 module.exports = class TaskController {
     // Método para obter todas as tarefas
@@ -18,7 +19,7 @@ module.exports = class TaskController {
             const task = await TaskModel.findById(taskId);
 
             if (!task) {
-                res.status(404).send("Task not found");
+                return notFoundError(res);
             } else {
                 res.status(200).send(task);
             }
@@ -64,7 +65,7 @@ module.exports = class TaskController {
             );
 
             if (!updatedTask) {
-                return res.status(404).send("Task not found");
+                return notFoundError(res);
             }
 
             res.status(200).send(updatedTask);
@@ -80,7 +81,7 @@ module.exports = class TaskController {
             const deletedTask = await TaskModel.findByIdAndDelete(taskId);
 
             if (!deletedTask) {
-                res.status(404).send("Task not found");
+                return notFoundError(res);
             } else {
                 res.status(200).send(deletedTask);
             }
