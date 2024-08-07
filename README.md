@@ -11,8 +11,8 @@ Esta é uma API simples de gerenciamento de tarefas construída com Node.js, Exp
 
 1. Clone o repositório:
     ```sh
-    git clone https://github.com/dougml/task-manager-api
-    cd task-manager-api
+    git clone https://github.com/seu-usuario/seu-repositorio.git
+    cd seu-repositorio
     ```
 
 2. Instale as dependências:
@@ -29,7 +29,7 @@ Esta é uma API simples de gerenciamento de tarefas construída com Node.js, Exp
 
 1. Inicie o servidor:
     ```sh
-    npm start
+    npm start:dev
     ```
 
 2. Acesse a API em `http://localhost:3000`.
