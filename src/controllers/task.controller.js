@@ -1,6 +1,7 @@
 const TaskModel = require("../models/task.model");
-const { notFoundError } = require("../errors/mongodb.errors");
+const { notFoundError, objectIdCastError } = require("../errors/mongodb.errors");
 const { notAllowedFiledsToUpdate } = require("../errors/general.errors");
+const { default: mongoose } = require("mongoose");
 
 module.exports = class TaskController {
     // Método para obter todas as tarefas
@@ -25,6 +26,9 @@ module.exports = class TaskController {
                 res.status(200).send(task);
             }
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError){
+                return objectIdCastError(res)
+            }
             res.status(500).send("Internal server error");
         }
     }
@@ -69,6 +73,9 @@ module.exports = class TaskController {
 
             res.status(200).send(updatedTask);
         } catch (error) {
+            if (error instanceof mongoose.Error.CastError){
+                return objectIdCastError(res)
+            }
             res.status(500).send("Internal server error");
         }
     }
@@ -85,7 +92,10 @@ module.exports = class TaskController {
                 res.status(200).send(deletedTask);
             }
         } catch (error) {
-            res.status(500).send(error.message);
+            if (error instanceof mongoose.Error.CastError){
+                return objectIdCastError(res)
+            }
+            res.status(500).send("Internal server error");
         }
     }
 };
