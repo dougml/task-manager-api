@@ -1,5 +1,6 @@
 const TaskModel = require("../models/task.model");
 const { notFoundError } = require("../errors/mongodb.errors");
+const { notAllowedFiledsToUpdate } = require("../errors/general.errors");
 
 module.exports = class TaskController {
     // Método para obter todas as tarefas
@@ -47,9 +48,7 @@ module.exports = class TaskController {
 
             // Verifica se a tentativa de atualizar o campo "description" foi feita
             if (description) {
-                return res
-                    .status(400)
-                    .send("Is not possible to update task description");
+                return notAllowedFiledsToUpdate(res)
             }
 
             // Verifica se o campo "isCompleted" foi passado no corpo da requisição
